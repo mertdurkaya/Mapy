@@ -23,7 +23,7 @@ struct LocationsListView: View {
                 .listRowBackground(Color.clear)
             }
         }
-        .frame(maxHeight: UIScreen.main.bounds.height / 2)
+        .frame(maxHeight: 700)
         .listStyle(.plain)
     }
 }

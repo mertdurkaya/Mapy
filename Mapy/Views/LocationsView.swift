@@ -12,6 +12,8 @@ struct LocationsView: View {
     
     @EnvironmentObject private var viewModel: LocationsViewModel
     
+    let maxWidth: CGFloat = 700
+    
     var body: some View {
         ZStack {
             mapLayer
@@ -19,6 +21,7 @@ struct LocationsView: View {
             VStack(spacing: 0) {
                 header
                     .padding()
+                    .frame(maxWidth: maxWidth)
                 Spacer()
                 locationsPreviewStack
             }
@@ -82,8 +85,10 @@ extension LocationsView {
                 if viewModel.mapLocation == location {
                     LocationPreviewView(location: location)
                         .shadow(color: Color.black.opacity(0.4), radius: 16, x: 16, y: 16)
-                        .padding(.horizontal, 8)
-                        .offset(y: viewModel.mapLocation.id == location.id ? -48 : 0)
+                        .padding(.horizontal, 16)
+                        .frame(maxWidth: maxWidth)
+                        .frame(maxWidth: .infinity)
+                        .offset(y: viewModel.mapLocation.id == location.id ? -36 : 0)
                         .opacity(viewModel.mapLocation.id == location.id ? 1 : 0)
                         .onTapGesture {
                             viewModel.showNextLocation(location: location)
