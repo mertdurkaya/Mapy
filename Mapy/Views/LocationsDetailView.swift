@@ -61,13 +61,25 @@ extension LocationsDetailView {
     }
     
     private var titleSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(location.name)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            Text(location.cityName)
-                .font(.title3)
-                .foregroundStyle(.secondary)
+        HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(location.name)
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                Text(location.cityName)
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            VStack {
+                Button {
+                    viewModel.openWithAppleMaps(location: location)
+                } label: {
+                    Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.accentColor)
+                }
+            }
         }
     }
     

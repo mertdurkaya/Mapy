@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 
+@MainActor
 class LocationsViewModel: ObservableObject {
     
     @Published var locations: [Location]
@@ -75,5 +76,11 @@ class LocationsViewModel: ObservableObject {
         
         let nextLocation = locations[nextIndex]
         showNextLocation(location: nextLocation)
+    }
+    
+    func openWithAppleMaps(location: Location) {
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinates))
+        mapItem.name = location.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
 }
